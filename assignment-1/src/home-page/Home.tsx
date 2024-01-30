@@ -3,26 +3,23 @@ import Navbar from "react-bootstrap/Navbar";
 import { FaCar } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
 import { TbFilter } from "react-icons/tb";
-import { useState } from "react";
-import { IoClose } from "react-icons/io5";
+import { useRef, useState } from "react";
+import { HomeFilter } from "./HomeFilter";
 
 function Home() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [parkingType, setParkingType] = useState<"indoor" | "outdoor">(
-    "indoor"
-  );
+
   const _renderSpotCard = (index: number) => {
     return (
       <div
-        className='aspect-square relative rounded-md shadow-sm h-[280px] md:h-[240px] xl:h-[280px]'
+        className='aspect-square relative rounded-md shadow-sm h-[280px] md:h-[240px] xl:h-[280px] cursor-pointer'
         key={index}
       >
-        <iframe
-          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22711.48745600124!2d-63.586304000000005!3d44.63922639999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b5a223075e6d9d7%3A0x748c455d10d45403!2sDalhousie%20University!5e0!3m2!1sen!2sca!4v1706481819698!5m2!1sen!2sca'
+        <img
+          src='https://picsum.photos/200'
           className='h-full w-full rounded-md'
           loading='lazy'
-          title={index.toString()}
-        ></iframe>
+        ></img>
         <div className='w-full absolute bottom-0 sm:flex flex-row p-2 items-center justify-between rounded-b-md bg-slate-50 hidden'>
           <div>
             <p className='m-0 p-0'>From 1st march</p>
@@ -99,110 +96,10 @@ function Home() {
         </footer>
         {/** footer end */}
       </div>
-      <div
-        className='modal'
-        data-bs-backdrop='static'
-        data-bs-keyboard='false'
-        aria-modal='true'
-        role='dialog'
-        style={{ display: isFilterOpen ? "block" : "none" }}
-      >
-        <div className='modal-dialog modal-dialog-centered' role='document'>
-          <div className='modal-content m-auto'>
-            <div className='modal-header'>
-              <h5 className='modal-title'>Filters</h5>
-              <IoClose
-                className='text-3xl cursor-pointer'
-                onClick={() => {
-                  setIsFilterOpen(false);
-                }}
-              />
-            </div>
-            <div className='modal-body'>
-              <div className='flex flex-col'>
-                <div>
-                  <h6>Type of parking</h6>
-                  <div className='flex flex-row'>
-                    <button
-                      className={`py-2 border-2 border-gray-400 rounded-l-md text-center w-[25%] ${
-                        parkingType === "indoor" ? "bg-blue-600 text-white" : ""
-                      }`}
-                      onClick={() => {
-                        setParkingType("indoor");
-                      }}
-                    >
-                      Indoor
-                    </button>
-                    <button
-                      className={`py-2 border-r-2 border-t-2 border-b-2 border-gray-400 rounded-r-md text-center w-[25%] ${
-                        parkingType === "outdoor"
-                          ? "bg-blue-600 text-white"
-                          : ""
-                      }`}
-                      onClick={() => {
-                        setParkingType("outdoor");
-                      }}
-                    >
-                      Outdoor
-                    </button>
-                  </div>
-                </div>
-                <hr />
-                <div>
-                  <h6>Price Range</h6>
-                  <div className='flex flex-col w-full'>
-                    <input type='range' className='flex-1' min={10} max={500} />
-                    <div className='flex flex-row w-full justify-between'>
-                      <span>$10</span>
-                      <span>$500</span>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <div>
-                  <h6>Choose location</h6>
-                  <iframe
-                    src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22711.48745600124!2d-63.586304000000005!3d44.63922639999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b5a223075e6d9d7%3A0x748c455d10d45403!2sDalhousie%20University!5e0!3m2!1sen!2sca!4v1706481819698!5m2!1sen!2sca'
-                    className='h-[200px] w-full rounded-md'
-                    loading='lazy'
-                  />
-                  <div className='flex flex-row mt-3 items-start'>
-                    <h6>Radius</h6>
-                    <div className='flex flex-col w-full mx-4'>
-                      <input type='range' className='flex-1' min={2} max={20} />
-                      <div className='flex flex-row w-full justify-between'>
-                        <span>2KM</span>
-                        <span>20KM</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='modal-footer filter-modal-footer'>
-              <button
-                type='button'
-                className='w-[25%] text-center bg-red-500 text-white py-2 rounded-md shadow-sm z-10'
-                onClick={() => {
-                  setIsFilterOpen(false);
-                }}
-              >
-                Clear
-              </button>
-              <button
-                type='button'
-                className='w-[25%] text-center bg-blue-600  text-white py-2 rounded-md shadow-sm z-10'
-                data-dismiss='modal'
-                onClick={() => {
-                  setIsFilterOpen(false);
-                }}
-              >
-                Apply
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HomeFilter
+        isFilterOpen={isFilterOpen}
+        setIsFilterOpen={setIsFilterOpen}
+      />
     </>
   );
 }
