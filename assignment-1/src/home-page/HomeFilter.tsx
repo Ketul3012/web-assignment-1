@@ -167,10 +167,7 @@ export const HomeFilter = ({
                     <MapContainer
                       center={filterState.currentLocation}
                       zoom={MAP_ZOOM_LEVEL}
-                      style={{
-                        height: "100%",
-                        width: "100%",
-                      }}
+                      className='h-full w-full'
                       ref={mapRef}
                     >
                       <TileLayer

@@ -1,58 +1,43 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { FaCar } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
 import { TbFilter } from "react-icons/tb";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { HomeFilter } from "./HomeFilter";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const _renderSpotCard = (index: number) => {
     return (
-      <div
-        className='aspect-square relative rounded-md shadow-sm h-[280px] md:h-[240px] xl:h-[280px] cursor-pointer'
-        key={index}
-      >
-        <img
-          src='https://picsum.photos/200'
-          className='h-full w-full rounded-md'
-          loading='lazy'
-        ></img>
-        <div className='w-full absolute bottom-0 sm:flex flex-row p-2 items-center justify-between rounded-b-md bg-slate-50 hidden'>
-          <div>
-            <p className='m-0 p-0'>From 1st march</p>
-            <p className='m-0 p-0'>John Green</p>
+      <Link className='text-black' to={"/spot/" + index}>
+        <div
+          className='aspect-square relative rounded-md shadow-sm h-[280px] md:h-[240px] xl:h-[280px] cursor-pointer'
+          key={index}
+        >
+          <img
+            src='https://picsum.photos/200'
+            alt=''
+            className='h-full w-full rounded-md'
+            loading='lazy'
+          ></img>
+          <div className='w-full absolute bottom-0 sm:flex flex-row p-2 items-center justify-between rounded-b-md bg-slate-50 hidden'>
+            <div>
+              <p className='m-0 p-0'>From 1st march</p>
+              <p className='m-0 p-0'>John Green</p>
+            </div>
+            <p className='m-0 p-0'>$ 100</p>
           </div>
-          <p className='m-0 p-0'>$ 100</p>
         </div>
-      </div>
+      </Link>
     );
   };
 
   return (
     <>
       <div className='flex flex-col h-screen'>
-        {/** Navigation bar start */}
-        <header className='sticky top-0 z-50 bg-white shadow-sm border-b-1 border-gray-400 '>
-          <Navbar expand='md' className='py-2 px-4'>
-            <Navbar.Brand href='/' className='flex-row flex items-center'>
-              <FaCar className='mr-2 text-3xl' />
-              Park Help
-            </Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className='justify-content-end'>
-              <Nav>
-                <Nav.Link>Login</Nav.Link>
-                <div className='border-l-2 border-solid border-gray-400 mx-4 my-2 hidden lg:block'></div>
-                <Nav.Link>Register</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-        </header>
-        {/** Navigation bar end */}
-
+        <Header />
         <section className='px-8 py-8 flex-1'>
           <div className='flex flex-col items-center justify-center'>
             <div className='flex flex-row items-center h-[48px]'>
@@ -79,22 +64,7 @@ function Home() {
             </div>
           </div>
         </section>
-        {/** footer start*/}
-        <footer className='px-4 pb-2 pt-4 bg-gray-200'>
-          <div className='flex flex-row'>
-            <div className='flex flex-col flex-[2]'>
-              <p className='m-0 p-0'>Park help</p>
-              <p className='m-0 p-0'>&copy;2024</p>
-            </div>
-            <div className='flex flex-col lg:flex-row justify-between flex-1 mx-6'>
-              <p className='m-0 p-0'>Privacy</p>
-              <p className='m-0 p-0'>Terms</p>
-              <p className='m-0 p-0'>Support</p>
-              <p className='m-0 p-0'>About</p>
-            </div>
-          </div>
-        </footer>
-        {/** footer end */}
+        <Footer />
       </div>
       <HomeFilter
         isFilterOpen={isFilterOpen}
