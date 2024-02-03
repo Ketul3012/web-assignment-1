@@ -15,9 +15,13 @@ export const MAP_ZOOM_LEVEL = 16;
 export const HomeFilter = ({
   isFilterOpen,
   setIsFilterOpen,
+  clearCallback,
+  applyCallback,
 }: {
   isFilterOpen: boolean;
   setIsFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  clearCallback: () => void;
+  applyCallback: (filtersFields: FiltersFields) => void;
 }) => {
   const initialFilter: FiltersFields = {
     parkingType: "indoor",
@@ -27,6 +31,10 @@ export const HomeFilter = ({
   };
 
   const [filterState, setFilterState] = useState<FiltersFields>(initialFilter);
+
+  const filterStateRef = useRef(initialFilter);
+
+  filterStateRef.current = filterState;
 
   const mapRef = useRef<Map | null>(null);
 
@@ -58,7 +66,7 @@ export const HomeFilter = ({
     if (mapRef?.current) {
       mapRef.current?.on("click", (e) => {
         setFilterState({
-          ...filterState,
+          ...filterStateRef.current,
           currentLocation: new LatLng(e.latlng.lat, e.latlng.lng),
         });
         mapRef.current?.flyTo(
@@ -137,7 +145,7 @@ export const HomeFilter = ({
               </div>
               <hr />
               <div>
-                <h6>Price Range</h6>
+                <h6>Price Range: $ {filterState.priceRange}</h6>
                 <div className='flex flex-col w-full'>
                   <input
                     type='range'
@@ -179,7 +187,7 @@ export const HomeFilter = ({
                   ) : null}
                 </div>
                 <div className='flex flex-row mt-3 items-start'>
-                  <h6>Radius</h6>
+                  <h6>Radius: {filterState.radius}</h6>
                   <div className='flex flex-col w-full mx-4'>
                     <input
                       type='range'
@@ -209,6 +217,7 @@ export const HomeFilter = ({
               className='w-[25%] text-center bg-red-500 text-white py-2 rounded-md shadow-sm z-10'
               onClick={() => {
                 setFilterState(initialFilter);
+                clearCallback();
                 setIsFilterOpen(false);
               }}
             >
@@ -219,9 +228,8 @@ export const HomeFilter = ({
               className='w-[25%] text-center bg-blue-600  text-white py-2 rounded-md shadow-sm z-10'
               data-dismiss='modal'
               onClick={() => {
+                applyCallback(filterState);
                 setIsFilterOpen(false);
-                //TODO
-                // make api call with new filters
               }}
             >
               Apply
