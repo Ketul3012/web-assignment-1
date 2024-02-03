@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./home-page/Home";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { SpotDetails } from "./spot-details/SpotDetails";
 import "react-calendar/dist/Calendar.css";
 
