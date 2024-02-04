@@ -102,9 +102,9 @@ export const HomeFilter = ({
       <div className='modal-dialog modal-dialog-centered' role='document'>
         <div className='modal-content m-auto'>
           <div className='modal-header'>
-            <h5 className='modal-title'>Filters</h5>
+            <h5 className='modal-title text-textPrimary'>Filters</h5>
             <IoClose
-              className='text-3xl cursor-pointer'
+              className='text-3xl cursor-pointer text-textPrimary'
               onClick={() => {
                 setFilterState(initialFilter);
                 setIsFilterOpen(false);
@@ -114,10 +114,10 @@ export const HomeFilter = ({
           <div className='modal-body'>
             <div className='flex flex-col h-full'>
               <div>
-                <h6>Type of parking</h6>
+                <h6 className='text-textPrimary'>Type of parking</h6>
                 <div className='flex flex-row'>
                   <button
-                    className={`py-2 border-2 border-borderColor rounded-l-md text-center w-[25%] ${
+                    className={`py-2 border-2 border-borderColor text-textPrimary rounded-l-md text-center w-[25%] ${
                       filterState.parkingType === "indoor"
                         ? "bg-buttonPrimary text-textSecondary"
                         : ""
@@ -132,7 +132,7 @@ export const HomeFilter = ({
                     Indoor
                   </button>
                   <button
-                    className={`py-2 border-r-2 border-t-2 border-b-2 border-borderColor rounded-r-md text-center w-[25%] ${
+                    className={`py-2 border-r-2 border-t-2 border-b-2 text-textPrimary border-borderColor rounded-r-md text-center w-[25%] ${
                       filterState.parkingType === "outdoor"
                         ? "bg-buttonPrimary text-textSecondary"
                         : ""
@@ -150,11 +150,13 @@ export const HomeFilter = ({
               </div>
               <hr />
               <div>
-                <h6>Price Range: $ {filterState.priceRange}</h6>
+                <h6 className='text-textPrimary'>
+                  Price Range: $ {filterState.priceRange}
+                </h6>
                 <div className='flex flex-col w-full'>
                   <input
                     type='range'
-                    className='flex-1'
+                    className='flex-1 accent-textPrimary'
                     min={10}
                     max={500}
                     value={filterState.priceRange}
@@ -166,14 +168,14 @@ export const HomeFilter = ({
                     }}
                   />
                   <div className='flex flex-row w-full justify-between'>
-                    <span>$10</span>
-                    <span>$500</span>
+                    <span className='text-textPrimary'>$10</span>
+                    <span className='text-textPrimary'>$500</span>
                   </div>
                 </div>
               </div>
               <hr />
               <div className='h-auto'>
-                <h6>Choose location</h6>
+                <h6 className='text-textPrimary'>Choose location</h6>
                 <div className='m-0 h-[200px] w-full'>
                   {filterState.currentLocation.lat !== 0 &&
                   filterState.currentLocation.lng !== 0 ? (
@@ -192,11 +194,13 @@ export const HomeFilter = ({
                   ) : null}
                 </div>
                 <div className='flex flex-row mt-3 items-start'>
-                  <h6>Radius: {filterState.radius}</h6>
+                  <h6 className='text-textPrimary'>
+                    Radius: {filterState.radius}
+                  </h6>
                   <div className='flex flex-col w-full mx-4'>
                     <input
                       type='range'
-                      className='flex-1'
+                      className='flex-1 accent-textPrimary'
                       min={2}
                       max={20}
                       value={filterState.radius}
@@ -208,8 +212,8 @@ export const HomeFilter = ({
                       }}
                     />
                     <div className='flex flex-row w-full justify-between'>
-                      <span>2KM</span>
-                      <span>20KM</span>
+                      <span className='text-textPrimary'>2KM</span>
+                      <span className='text-textPrimary'>20KM</span>
                     </div>
                   </div>
                 </div>

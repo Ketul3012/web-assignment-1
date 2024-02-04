@@ -10,6 +10,7 @@ import { getRequest } from "../utils/network-manager/axios";
 import StarRatings from "react-star-ratings";
 import dayjs from "dayjs";
 import { formatToTwoPrecisionFloat } from "../utils/number-utils";
+import { toast } from "react-toastify";
 
 export interface ParkingSpotDetails {
   id: number;
@@ -76,13 +77,13 @@ export const SpotDetails = () => {
         <Header />
         {parkingSpotDetails ? (
           <section className='flex-1 flex flex-col'>
-            <div className='flex flex-col md:flex-row w-full justify-between items-center md:px-4 py-2 border-b-[1px] bg-header border-borderColor'>
-              <h3 className='flex-[2] text-textPrimary'>
+            <div className='flex flex-col md:flex-row w-full justify-between items-center md:px-4 py-2  bg-footer'>
+              <h3 className='flex-1 lg:flex-[2] text-textSecondary'>
                 {parkingSpotDetails.name}
               </h3>
               <div className='grid w-full grid-cols-4 md:flex  md:flex-row justify-between flex-1'>
                 <h5
-                  className='flex flex-row items-center justify-center cursor-pointer text-textPrimary'
+                  className='flex flex-row items-center justify-center cursor-pointer text-textSecondary'
                   onClick={() => {
                     document.getElementById("details")?.scrollIntoView();
                   }}
@@ -90,7 +91,7 @@ export const SpotDetails = () => {
                   Details
                 </h5>
                 <h5
-                  className='flex flex-row items-center justify-center cursor-pointer text-textPrimary'
+                  className='flex flex-row items-center justify-center cursor-pointer text-textSecondary'
                   onClick={() => {
                     document.getElementById("availability")?.scrollIntoView();
                   }}
@@ -98,7 +99,7 @@ export const SpotDetails = () => {
                   Availability
                 </h5>
                 <h5
-                  className='flex flex-row items-center justify-center cursor-pointer text-textPrimary'
+                  className='flex flex-row items-center justify-center cursor-pointer text-textSecondary'
                   onClick={() => {
                     document.getElementById("location")?.scrollIntoView();
                   }}
@@ -106,7 +107,7 @@ export const SpotDetails = () => {
                   Location
                 </h5>
                 <h5
-                  className='flex flex-row items-center justify-center cursor-pointer text-textPrimary'
+                  className='flex flex-row items-center justify-center cursor-pointer text-textSecondary'
                   onClick={() => {
                     navigator.share({
                       text: "url to be shared",
@@ -140,8 +141,8 @@ export const SpotDetails = () => {
               </div>
             </div>
             <div className='flex flex-col md:flex-row m-4' id='details'>
-              <div className='flex-1 md:border-r-[2px] md:border-borderColor md:mr-2'>
-                <div className='flex flex-col mb-8 md:mb-0 md:mr-8 z-10 shadow-lg bg-backgroundColor flex-auto rounded-md'>
+              <div className='flex-1 md:border-r-[2px] md:border-borderColor md:mr-2 animate__animated  animate__slideInLeft'>
+                <div className='flex flex-col mb-8 md:mb-0 md:mr-8 z-10 shadow-lg bg-backgroundColor flex-auto rounded-md '>
                   <div className='flex flex-col p-4'>
                     <h4 className='text-textPrimary'>Spot details</h4>
                     <p className='text-textPrimary'>
@@ -161,7 +162,7 @@ export const SpotDetails = () => {
                           rating={parkingSpotDetails.rating}
                           numberOfStars={5}
                           starDimension='20px'
-                          starRatedColor='black'
+                          starRatedColor='#0a0944'
                         />
                       </span>
                     </p>
@@ -188,7 +189,7 @@ export const SpotDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className='flex-1 h-full'>
+              <div className='flex-1 h-full animate__animated  animate__slideInRight'>
                 <div className='flex flex-col h-full md:ml-4 z-10 shadow-lg bg-backgroundColor flex-auto rounded-md'>
                   <div className='flex flex-col px-4 pt-4 pb-3 w-full'>
                     <h4 className='text-textPrimary'>
@@ -235,11 +236,18 @@ export const SpotDetails = () => {
                       </div>
                     </div>
                     <button
-                      className='w-full text-center py-3 mt-4 bg-buttonPrimary text-textSecondary rounded-lg z-20 shadow-md disabled:!bg-gray-700'
-                      title={
-                        numberOfDays === 0 ? "Please select date range" : ""
-                      }
-                      disabled={numberOfDays === 0}
+                      className='w-full text-center py-3 mt-4 bg-header text-textSecondary rounded-lg z-20 shadow-md'
+                      onClick={() => {
+                        if (numberOfDays === 0) {
+                          toast("Please select dates", {
+                            type: "error",
+                          });
+                        } else {
+                          toast("Your reservation is done", {
+                            type: "success",
+                          });
+                        }
+                      }}
                     >
                       Reserve
                     </button>
@@ -275,7 +283,10 @@ export const SpotDetails = () => {
                 </div>
               </div>
             </div>
-            <div className='flex flex-col m-4' id='availability'>
+            <div
+              className='flex flex-col m-4 animate__animated  animate__slideInLeft'
+              id='availability'
+            >
               <h4 className='text-textPrimary'>Availability</h4>
               <div className='hidden md:block'>
                 <Calendar
@@ -292,7 +303,10 @@ export const SpotDetails = () => {
                 />
               </div>
             </div>
-            <div className='flex flex-col m-4' id='location'>
+            <div
+              className='flex flex-col m-4 animate__animated  animate__slideInRight'
+              id='location'
+            >
               <h4 className='text-textPrimary'>Location</h4>
               <div className='w-full aspect-square md:h-[400px] border-1 border-textPrimary'>
                 <MapContainer

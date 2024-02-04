@@ -8,12 +8,12 @@ module.exports = {
     extend: {
       colors: {
         backgroundColor: "#f8fafc",
-        buttonPrimary: "#415e9c",
+        buttonPrimary: "#0d0c4d",
         buttonDanger: "#b02a2a",
-        footer: "#e5e7eb",
-        header: "#ffffff",
+        footer: "#1e1d73",
+        header: "#0d0c4d",
         borderColor: "#9ca3af",
-        textPrimary: "#415e9c",
+        textPrimary: "#0d0c4d",
         textSecondary: "#ffffff",
       },
     },

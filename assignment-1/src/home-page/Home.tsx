@@ -52,7 +52,7 @@ function Home() {
     return (
       <Link className='text-textPrimary' to={"/spot/" + parkingSpot.id}>
         <div
-          className='aspect-square relative rounded-md shadow-lg h-[280px] md:h-[240px] xl:h-[280px] cursor-pointer'
+          className='aspect-square relative rounded-md shadow-lg h-[280px] md:h-[240px] xl:h-[280px] cursor-pointer hover:scale-[1.05] transition'
           key={index}
         >
           <img
@@ -85,7 +85,7 @@ function Home() {
             <div className='flex flex-row items-center h-[48px]'>
               <Form.Control
                 placeholder='Search by address / pin code / city, Example: Main Street'
-                className='h-[48px] sm:!w-full md:!w-[320px] lg:!w-[640px] !text-textPrimary placeholder:!text-textPrimary'
+                className='h-[48px] sm:!w-full md:!w-[320px] lg:!w-[640px] !text-textPrimary placeholder:!text-textPrimary border-textPrimary border-[1px]'
                 value={searchText}
                 onChange={(e) => {
                   setSearchText(e.target.value);
@@ -148,7 +148,7 @@ function Home() {
         }}
         applyCallback={(filtersFields) => {
           setFilteredParkingSpots(
-            filteredParkingSpots.filter((item) => {
+            parkingSpots.filter((item) => {
               if (
                 item.parkingType === filtersFields.parkingType &&
                 item.pricePerMonth <= filtersFields.priceRange &&

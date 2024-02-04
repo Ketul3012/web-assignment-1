@@ -8,17 +8,17 @@ export const Header = () => {
       <Navbar expand='md' className='py-2 px-4'>
         <Navbar.Brand
           href='/'
-          className='flex-row flex items-center text-textPrimary'
+          className='flex-row flex items-center text-textSecondary'
         >
-          <FaCar className='mr-2 text-3xl text-textPrimary' />
-          <p className='text-textPrimary'>Park Help</p>
+          <FaCar className='mr-2 text-3xl text-textSecondary' />
+          <p className='text-textSecondary'>Park Help</p>
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className='justify-content-end'>
           <Nav>
-            <Nav.Link className='!text-textPrimary'>Login</Nav.Link>
+            <Nav.Link className='!text-textSecondary'>Login</Nav.Link>
             <div className='border-l-2 border-solid border-borderColor mx-4 my-2 hidden lg:block'></div>
-            <Nav.Link className='!text-textPrimary'>Register</Nav.Link>
+            <Nav.Link className='!text-textSecondary'>Register</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
