@@ -2,7 +2,7 @@ export const Footer = () => {
   return (
     <footer className='px-4 pb-2 pt-4 bg-footer'>
       <div className='flex flex-row'>
-        <div className='flex flex-col flex-[2]'>
+        <div className='flex flex-col flex-[2] md:flex-[3]'>
           <p className='text-textSecondary'>Park help</p>
           <p className='text-textSecondary'>&copy;2024</p>
         </div>
