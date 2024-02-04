@@ -85,7 +85,7 @@ function Home() {
             <div className='flex flex-row items-center h-[48px]'>
               <Form.Control
                 placeholder='Search by address / pin code / city, Example: Main Street'
-                className='h-[48px] sm:!w-full md:!w-[320px] lg:!w-[640px]'
+                className='h-[48px] sm:!w-full md:!w-[320px] lg:!w-[640px] !text-textPrimary placeholder:!text-textPrimary'
                 value={searchText}
                 onChange={(e) => {
                   setSearchText(e.target.value);
@@ -115,7 +115,7 @@ function Home() {
                 }}
               ></Form.Control>
               <TbFilter
-                className='text-[48px] mx-2 text-borderColor cursor-pointer'
+                className='text-[48px] mx-2 text-textPrimary cursor-pointer'
                 onClick={() => {
                   setIsFilterOpen(true);
                 }}
@@ -130,7 +130,9 @@ function Home() {
                 </div>
               ) : (
                 <div className='text-center flex flex-row items-center justify-center h-full w-full'>
-                  <h5>No parking spots available</h5>
+                  <h5 className='text-textPrimary'>
+                    No parking spots available
+                  </h5>
                 </div>
               )}
             </div>

@@ -7,15 +7,13 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "",
-        secondary: "",
         backgroundColor: "#f8fafc",
-        buttonPrimary: "#2563eb",
-        buttonDanger: "#ef4444",
+        buttonPrimary: "#415e9c",
+        buttonDanger: "#b02a2a",
         footer: "#e5e7eb",
         header: "#ffffff",
         borderColor: "#9ca3af",
-        textPrimary: "#000000",
+        textPrimary: "#415e9c",
         textSecondary: "#ffffff",
       },
     },
