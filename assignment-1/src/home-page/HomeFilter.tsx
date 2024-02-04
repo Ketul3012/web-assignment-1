@@ -42,6 +42,11 @@ export const HomeFilter = ({
     if (mapRef.current) {
       mapRef.current.invalidateSize();
     }
+    if (isFilterOpen) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
   }, [isFilterOpen]);
 
   const fetchUserLocation = useCallback(() => {
@@ -112,9 +117,9 @@ export const HomeFilter = ({
                 <h6>Type of parking</h6>
                 <div className='flex flex-row'>
                   <button
-                    className={`py-2 border-2 border-gray-400 rounded-l-md text-center w-[25%] ${
+                    className={`py-2 border-2 border-borderColor rounded-l-md text-center w-[25%] ${
                       filterState.parkingType === "indoor"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-buttonPrimary text-textSecondary"
                         : ""
                     }`}
                     onClick={() => {
@@ -127,9 +132,9 @@ export const HomeFilter = ({
                     Indoor
                   </button>
                   <button
-                    className={`py-2 border-r-2 border-t-2 border-b-2 border-gray-400 rounded-r-md text-center w-[25%] ${
+                    className={`py-2 border-r-2 border-t-2 border-b-2 border-borderColor rounded-r-md text-center w-[25%] ${
                       filterState.parkingType === "outdoor"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-buttonPrimary text-textSecondary"
                         : ""
                     }`}
                     onClick={() => {
@@ -214,7 +219,7 @@ export const HomeFilter = ({
           <div className='modal-footer filter-modal-footer'>
             <button
               type='button'
-              className='w-[25%] text-center bg-red-500 text-white py-2 rounded-md shadow-sm z-10'
+              className='w-[25%] text-center bg-buttonDanger text-textSecondary py-2 rounded-md shadow-sm z-10'
               onClick={() => {
                 setFilterState(initialFilter);
                 clearCallback();
@@ -225,7 +230,7 @@ export const HomeFilter = ({
             </button>
             <button
               type='button'
-              className='w-[25%] text-center bg-blue-600  text-white py-2 rounded-md shadow-sm z-10'
+              className='w-[25%] text-center bg-buttonPrimary  text-textSecondary py-2 rounded-md shadow-sm z-10'
               data-dismiss='modal'
               onClick={() => {
                 applyCallback(filterState);

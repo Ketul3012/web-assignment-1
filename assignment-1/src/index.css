@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,4 +38,13 @@ code {
 .filter-modal-footer {
   display: flex;
   justify-content: space-evenly !important;
+}
+
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.modal-open {
+  overflow: hidden;
 }

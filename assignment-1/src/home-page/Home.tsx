@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
 import { getRequest } from "../utils/network-manager/axios";
 import { calculateDistanceFromLatLon } from "../utils/map-utils";
+import { Address } from "../spot-details/SpotDetails";
 
 export interface ParkingSpotsResponse {
   parkingSpots: ParkingSpot[];
@@ -19,6 +20,7 @@ export interface ParkingSpot {
   imageUrl: string;
   owner: Owner;
   location: Location;
+  address: Address;
 }
 
 export interface Location {
@@ -37,19 +39,20 @@ function Home() {
   const [filteredParkingSpots, setFilteredParkingSpots] = useState<
     ParkingSpot[]
   >([]);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     getRequest<ParkingSpotsResponse>("parking-spots").then((data) => {
-      setParkingSpots(data.data.parkingSpots);
-      setFilteredParkingSpots(data.data.parkingSpots);
+      setParkingSpots(data.parkingSpots);
+      setFilteredParkingSpots(data.parkingSpots);
     });
   }, []);
 
   const _renderSpotCard = (parkingSpot: ParkingSpot, index: number) => {
     return (
-      <Link className='text-black' to={"/spot/" + parkingSpot.id}>
+      <Link className='text-textPrimary' to={"/spot/" + parkingSpot.id}>
         <div
-          className='aspect-square relative rounded-md shadow-sm h-[280px] md:h-[240px] xl:h-[280px] cursor-pointer'
+          className='aspect-square relative rounded-md shadow-lg h-[280px] md:h-[240px] xl:h-[280px] cursor-pointer'
           key={index}
         >
           <img
@@ -58,7 +61,7 @@ function Home() {
             className='h-full w-full rounded-md'
             loading='lazy'
           ></img>
-          <div className='w-full absolute bottom-0 flex flex-row p-2 items-center justify-between rounded-b-md bg-slate-50'>
+          <div className='w-full absolute bottom-0 flex flex-row p-2 items-center justify-between rounded-b-md bg-backgroundColor'>
             <div>
               <p className='m-0 p-0'>Parking Type: {parkingSpot.parkingType}</p>
               <p className='m-0 p-0'>
@@ -81,11 +84,38 @@ function Home() {
           <div className='flex flex-col items-center justify-center'>
             <div className='flex flex-row items-center h-[48px]'>
               <Form.Control
-                placeholder='Search by address / pin code / city'
-                className='h-[48px] sm:!w-[160px] md:!w-[320px] lg:!w-[640px]'
+                placeholder='Search by address / pin code / city, Example: Main Street'
+                className='h-[48px] sm:!w-full md:!w-[320px] lg:!w-[640px]'
+                value={searchText}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                  const tempText = e.target.value;
+                  setFilteredParkingSpots(
+                    parkingSpots.filter((item) => {
+                      return (
+                        tempText === "" ||
+                        item.address.addressLine1
+                          .toLocaleLowerCase()
+                          .includes(tempText) ||
+                        item.address.addressLine2
+                          .toLocaleLowerCase()
+                          .includes(tempText) ||
+                        item.address.city
+                          .toLocaleLowerCase()
+                          .includes(tempText) ||
+                        item.address.state
+                          .toLocaleLowerCase()
+                          .includes(tempText) ||
+                        item.address.postalCode
+                          .toLocaleLowerCase()
+                          .includes(tempText)
+                      );
+                    })
+                  );
+                }}
               ></Form.Control>
               <TbFilter
-                className='text-[48px] mx-2 text-gray-500 cursor-pointer'
+                className='text-[48px] mx-2 text-borderColor cursor-pointer'
                 onClick={() => {
                   setIsFilterOpen(true);
                 }}
@@ -116,7 +146,7 @@ function Home() {
         }}
         applyCallback={(filtersFields) => {
           setFilteredParkingSpots(
-            parkingSpots.filter((item) => {
+            filteredParkingSpots.filter((item) => {
               if (
                 item.parkingType === filtersFields.parkingType &&
                 item.pricePerMonth <= filtersFields.priceRange &&
