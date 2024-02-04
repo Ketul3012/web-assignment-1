@@ -61,7 +61,7 @@ export const HomeFilter = ({
         });
       });
     }
-  }, [filterState]);
+  }, []);
 
   useEffect(() => {
     fetchUserLocation();
