@@ -76,7 +76,7 @@ export const SpotDetails = () => {
       <div className='flex flex-col h-screen'>
         <Header />
         {parkingSpotDetails ? (
-          <section className='flex-1 flex flex-col'>
+          <div className='flex-1 flex flex-col'>
             <div className='flex flex-col md:flex-row w-full justify-between items-center md:px-4 py-2  bg-footer'>
               <h3 className='flex-1 lg:flex-[2] text-textSecondary'>
                 {parkingSpotDetails.name}
@@ -136,7 +136,7 @@ export const SpotDetails = () => {
                   src={`https://picsum.photos/id/${params.id}/1080/1200`}
                   className='h-[400px] object-contain'
                   loading='lazy'
-                  alt=''
+                  alt={parkingSpotDetails.name}
                 />
               </div>
             </div>
@@ -157,14 +157,12 @@ export const SpotDetails = () => {
                     </p>
                     <p className='text-textPrimary'>
                       {parkingSpotDetails.rating}{" "}
-                      <span>
-                        <StarRatings
-                          rating={parkingSpotDetails.rating}
-                          numberOfStars={5}
-                          starDimension='20px'
-                          starRatedColor='#0a0944'
-                        />
-                      </span>
+                      <StarRatings
+                        rating={parkingSpotDetails.rating}
+                        numberOfStars={5}
+                        starDimension='20px'
+                        starRatedColor='#0a0944'
+                      />
                     </p>
                     <p className='underline cursor-pointer text-textPrimary'>
                       {parkingSpotDetails.reviews} Reviews
@@ -352,7 +350,7 @@ export const SpotDetails = () => {
                 </MapContainer>
               </div>
             </div>
-          </section>
+          </div>
         ) : null}
         <Footer />
       </div>

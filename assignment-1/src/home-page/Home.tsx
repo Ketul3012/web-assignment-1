@@ -57,7 +57,7 @@ function Home() {
         >
           <img
             src={`https://picsum.photos/id/${parkingSpot.id}/200`}
-            alt=''
+            alt={parkingSpot.id.toString()}
             className='h-full w-full rounded-md'
             loading='lazy'
           ></img>
@@ -80,7 +80,7 @@ function Home() {
     <>
       <div className='flex flex-col h-screen'>
         <Header />
-        <section className='px-8 py-8 flex-1'>
+        <div className='px-8 py-8 flex-1'>
           <div className='flex flex-col items-center justify-center'>
             <div className='flex flex-row items-center h-[48px]'>
               <Form.Control
@@ -89,7 +89,7 @@ function Home() {
                 value={searchText}
                 onChange={(e) => {
                   setSearchText(e.target.value);
-                  const tempText = e.target.value;
+                  const tempText = e.target.value.toLocaleLowerCase();
                   setFilteredParkingSpots(
                     parkingSpots.filter((item) => {
                       return (
@@ -137,7 +137,7 @@ function Home() {
               )}
             </div>
           </div>
-        </section>
+        </div>
         <Footer />
       </div>
       <HomeFilter
