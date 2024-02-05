@@ -155,15 +155,19 @@ export const SpotDetails = () => {
                         " " +
                         parkingSpotDetails.owner.lastName}
                     </p>
-                    <p className='text-textPrimary'>
-                      {parkingSpotDetails.rating}{" "}
-                      <StarRatings
-                        rating={parkingSpotDetails.rating}
-                        numberOfStars={5}
-                        starDimension='20px'
-                        starRatedColor='#0a0944'
-                      />
-                    </p>
+                    <div className='flex flex-row items-center'>
+                      <p className='text-textPrimary mt-1'>
+                        {parkingSpotDetails.rating}
+                      </p>
+                      <div className='ml-2'>
+                        <StarRatings
+                          rating={parkingSpotDetails.rating}
+                          numberOfStars={5}
+                          starDimension='20px'
+                          starRatedColor='#0a0944'
+                        />
+                      </div>
+                    </div>
                     <p className='underline cursor-pointer text-textPrimary'>
                       {parkingSpotDetails.reviews} Reviews
                     </p>
