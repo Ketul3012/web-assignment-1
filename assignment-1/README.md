@@ -1,46 +1,111 @@
-# Getting Started with Create React App
+# Assignment 1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* *Date Created*: 01 Feb 2024
+* *Last Modification Date*: 05 Feb 2024
+* *Assignment URL*: https://ketul-patel-web-assignment-1.netlify.app/
+* *Git URL*: https://git.cs.dal.ca/ketulp/csci-5709-assignments/-/tree/main/assignment-1?ref_type=heads
 
-## Available Scripts
+## Authors
 
-In the project directory, you can run:
+* [Ketul Patel](kt390621@dal.ca)
 
-### `npm start`
+## Deployment
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I mirrored project code from Gitlab to Github, and setup a Netlify to deploy from Github. With every commit on main branch Netlify automatically deploys the application. I configured some build settings on Netlify.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Built With
 
-### `npm test`
+* [React](https://legacy.reactjs.org/docs/getting-started.html/) - Frontend Development Framework
+* [npm](https://docs.npmjs.com//) - Dependency Management Tool
+* [node](https://nodejs.org/en) - Javascript Runtime used for development 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Sources Used
 
-### `npm run build`
+Header.tsx
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Line: 6-24
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+    <Navbar expand='md' className='py-2 px-4'>
+        <Navbar.Brand
+          href='/'
+          className='flex-row flex items-center text-textSecondary'
+        >
+          <FaCar className='mr-2 text-3xl text-textSecondary' />
+          <p className='text-textSecondary'>Park Help</p>
+        </Navbar.Brand>
+        <Navbar.Toggle className='bg-white' />
+        <Navbar.Collapse className='justify-content-end'>
+          <Nav>
+            <Nav.Link className='!text-textSecondary'>Login</Nav.Link>
+            <div className='border-l-2 border-solid border-borderColor mx-4 my-2 hidden lg:block'></div>
+            <Nav.Link className='!text-textSecondary'>Register</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The above code is implemented by studying the code about navigation bar from react bootstrap [React bootstrap navigation bar](
+https://react-bootstrap.netlify.app/docs/components/navbar/)
 
-### `npm run eject`
+Below is example code which I studied:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function BrandExample() {
+  return (
+    <>
+      <Navbar className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="#home">Brand link</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <br />
+      <Navbar className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand>Brand text</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <br />
+      <Navbar className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="#home">
+            <img
+              src="/img/logo.svg"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+      <br />
+      <Navbar className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="#home">
+            <img
+              alt=""
+              src="/img/logo.svg"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
+            React Bootstrap
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+    </>
+  );
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+export default BrandExample;
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
 
-## Learn More
+## Acknowledgments
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Code snippets provided me with insights and ideas how I can develop a functionality for me. Learning by observing and understanding those codes makes learning quick and efficient for me.

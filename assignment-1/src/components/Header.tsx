@@ -13,7 +13,7 @@ export const Header = () => {
           <FaCar className='mr-2 text-3xl text-textSecondary' />
           <p className='text-textSecondary'>Park Help</p>
         </Navbar.Brand>
-        <Navbar.Toggle />
+        <Navbar.Toggle className='bg-white' />
         <Navbar.Collapse className='justify-content-end'>
           <Nav>
             <Nav.Link className='!text-textSecondary'>Login</Nav.Link>
