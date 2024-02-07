@@ -1,7 +1,7 @@
 # Assignment 1
 
 * *Date Created*: 01 Feb 2024
-* *Last Modification Date*: 05 Feb 2024
+* *Last Modification Date*: 07 Feb 2024
 * *Assignment URL*: https://ketul-patel-web-assignment-1.netlify.app/
 * *Git URL*: https://git.cs.dal.ca/ketulp/csci-5709-assignments/-/tree/main/assignment-1?ref_type=heads
 
@@ -21,7 +21,7 @@ I mirrored project code from Gitlab to Github, and setup a Netlify to deploy fro
 
 ## Sources Used
 
-Header.tsx
+1. Header.tsx
 
 Line: 6-24
 
@@ -102,6 +102,46 @@ function BrandExample() {
 }
 
 export default BrandExample;
+
+```
+
+2. App.tsx
+
+line 19
+
+```
+    <div>
+      <Router>
+        <Routes>
+          <Route path='/spot/:id' Component={SpotDetails}></Route>
+          <Route path='/' Component={Home}></Route>
+        </Routes>
+      </Router>
+      <ToastContainer position='top-right' />
+    </div>
+
+```
+
+The above code is implemented by studying [React Toastify](https://www.npmjs.com/package/react-toastify) library.
+
+Below is sample code:
+
+```
+  import React from 'react';
+
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  
+  function App(){
+    const notify = () => toast("Wow so easy!");
+
+    return (
+      <div>
+        <button onClick={notify}>Notify!</button>
+        <ToastContainer />
+      </div>
+    );
+  }
 
 ```
 
